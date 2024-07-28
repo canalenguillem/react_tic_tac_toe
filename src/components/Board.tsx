@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Cell from "./Cell";
 
 function Board() {
+  const [board, setBoard] = useState(Array(9).fill(""));
   return (
     <>
-      <Cell />
+      {board.map((cell, index) => (
+        <Cell />
+      ))}
     </>
   );
 }

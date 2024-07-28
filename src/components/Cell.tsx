@@ -1,7 +1,7 @@
 import React from "react";
 
 function Cell() {
-  return <div>Celda desde componente</div>;
+  return <div className="cell">X</div>;
 }
 
 export default Cell;
