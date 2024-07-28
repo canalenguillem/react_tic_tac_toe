@@ -16,6 +16,7 @@ function Board() {
   const [board, setBoard] = useState(Array(9).fill(""));
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState<string | null>(null);
+  const [isDraw, setIsDraw] = useState(false); // Nuevo estado para empate
 
   const handleClick = (index: number) => {
     if (board[index] !== "" || winner) return;
@@ -27,6 +28,8 @@ function Board() {
     if (calculatedWinner) {
       console.log("Winer is ", calculatedWinner);
       setWinner(calculatedWinner);
+    } else if (checkDraw(newBoard)) {
+      setIsDraw(true);
     }
 
     setXIsNext(!xIsNext);
@@ -36,29 +39,21 @@ function Board() {
     for (let combination of WINNING_COMBINATIONS) {
       const [a, b, c] = combination;
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        console.log("entra en if");
-        console.log("a,b,c:", a, b, c);
-        console.log("valores: ", board[a], board[b], board[c]);
-        console.log(
-          "logicos",
-          board[a],
-          board[a] === board[b],
-          board[a] === board[c]
-        );
-        console.log(
-          "res logicos",
-          board[a] && board[a] === board[b] && board[a] === board[c]
-        );
         return board[a];
       }
     }
     return null;
   };
 
+  const checkDraw = (board: string[]): boolean => {
+    return board.every((cell) => cell !== ""); // Verifica si todas las celdas están llenas
+  };
+
   const resetGame = () => {
     setBoard(Array(9).fill(""));
     setXIsNext(true);
     setWinner(null);
+    setIsDraw(false);
   };
 
   return (
@@ -69,6 +64,13 @@ function Board() {
       {winner && (
         <div className="winning-message show">
           <div>{winner === "x" ? "X Gana!" : "O Gana!"}</div>
+          <button onClick={resetGame}>Reiniciar</button>
+        </div>
+      )}
+
+      {isDraw && !winner && (
+        <div className="winning-message show">
+          <div>¡Empate!</div>
           <button onClick={resetGame}>Reiniciar</button>
         </div>
       )}
