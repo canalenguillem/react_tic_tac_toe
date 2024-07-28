@@ -8,3 +8,47 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
 }
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+}
+
+/* Estilos del tablero */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+}
+
+/* Estilos de las celdas */
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid #000;
+  font-size: 2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cell:hover {
+  background-color: #a8a2a2;
+}
+
+/* Estilos para los símbolos X y O */
+.cell.x::before {
+  content: 'X';
+  color: red;
+}
+
+.cell.circle::before {
+  content: 'O';
+  color: blue;
+}
