@@ -6,7 +6,7 @@ interface CellProps {
 }
 
 function Cell({ value, onClick }: CellProps) {
-  return <div className="cell" onClick={onClick}></div>;
+  return <div className={`cell ${value}`} onClick={onClick}></div>;
 }
 
 export default Cell;
