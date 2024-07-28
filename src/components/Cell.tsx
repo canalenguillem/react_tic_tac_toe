@@ -1,7 +1,12 @@
 import React from "react";
 
-function Cell() {
-  return <div className="cell"></div>;
+interface CellProps {
+  value: string;
+  onClick: () => void;
+}
+
+function Cell({ value, onClick }: CellProps) {
+  return <div className="cell" onClick={onClick}></div>;
 }
 
 export default Cell;
