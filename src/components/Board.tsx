@@ -54,11 +54,24 @@ function Board() {
     }
     return null;
   };
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(""));
+    setXIsNext(true);
+    setWinner(null);
+  };
+
   return (
     <div className="board">
       {board.map((cell, index) => (
         <Cell key={index} value={cell} onClick={() => handleClick(index)} />
       ))}
+      {winner && (
+        <div className="winning-message show">
+          <div>{winner === "x" ? "X Gana!" : "O Gana!"}</div>
+          <button onClick={resetGame}>Reiniciar</button>
+        </div>
+      )}
     </div>
   );
 }
